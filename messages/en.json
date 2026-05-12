@@ -1,0 +1,98 @@
+{
+  "navigation": {
+    "home": "Home",
+    "algorithms": "Algorithms",
+    "dataStructures": "Data Structures",
+    "dataEngineering": "Data Engineering",
+    "about": "About"
+  },
+  "home": {
+    "title": "DataBox - Data Engineering Algorithms & Structures",
+    "subtitle": "Interactive platform for data engineering professionals and students",
+    "description": "Master data engineering concepts with interactive visualizations of algorithms, data structures, and distributed systems patterns.",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More"
+  },
+  "algorithms": {
+    "title": "Algorithms",
+    "sorting": {
+      "title": "Sorting Algorithms",
+      "description": "Visualize how different sorting algorithms work",
+      "bubbleSort": "Bubble Sort",
+      "quickSort": "Quick Sort",
+      "mergeSort": "Merge Sort",
+      "heapSort": "Heap Sort"
+    },
+    "search": {
+      "title": "Search Algorithms",
+      "description": "Explore different search techniques",
+      "binarySearch": "Binary Search",
+      "linearSearch": "Linear Search"
+    },
+    "graph": {
+      "title": "Graph Algorithms",
+      "description": "Understand graph traversal and pathfinding",
+      "bfs": "Breadth-First Search",
+      "dfs": "Depth-First Search",
+      "dijkstra": "Dijkstra's Algorithm"
+    }
+  },
+  "dataEngineering": {
+    "title": "Data Engineering Algorithms",
+    "etl": {
+      "title": "ETL & Processing",
+      "description": "Extract, Transform, Load patterns and algorithms",
+      "mapReduce": "MapReduce",
+      "windowFunctions": "Window Functions",
+      "partitioning": "Partitioning Algorithms"
+    },
+    "distributed": {
+      "title": "Distributed Systems",
+      "description": "Algorithms for distributed data processing",
+      "hashing": "Consistent Hashing",
+      "bloomFilter": "Bloom Filter",
+      "compression": "Compression Algorithms"
+    },
+    "streaming": {
+      "title": "Stream Processing",
+      "description": "Real-time data processing algorithms",
+      "slidingWindow": "Sliding Window",
+      "eventTime": "Event Time Processing",
+      "watermarks": "Watermarks"
+    }
+  },
+  "dataStructures": {
+    "title": "Data Structures",
+    "linear": {
+      "title": "Linear Structures",
+      "array": "Array",
+      "linkedList": "Linked List",
+      "stack": "Stack",
+      "queue": "Queue"
+    },
+    "nonLinear": {
+      "title": "Non-Linear Structures",
+      "tree": "Binary Tree",
+      "heap": "Heap",
+      "graph": "Graph",
+      "hashTable": "Hash Table"
+    }
+  },
+  "visualization": {
+    "play": "Play",
+    "pause": "Pause",
+    "reset": "Reset",
+    "speed": "Speed",
+    "step": "Step",
+    "input": "Input Data",
+    "generate": "Generate Random",
+    "complexity": "Time Complexity",
+    "spaceComplexity": "Space Complexity"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "tryAgain": "Try Again",
+    "close": "Close"
+  }
+}

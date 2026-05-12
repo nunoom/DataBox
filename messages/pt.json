@@ -1,0 +1,98 @@
+{
+  "navigation": {
+    "home": "Início",
+    "algorithms": "Algoritmos",
+    "dataStructures": "Estruturas de Dados",
+    "dataEngineering": "Engenharia de Dados",
+    "about": "Sobre"
+  },
+  "home": {
+    "title": "DataBox - Algoritmos e Estruturas para Engenharia de Dados",
+    "subtitle": "Plataforma interativa para profissionais e estudantes de engenharia de dados",
+    "description": "Domine conceitos de engenharia de dados com visualizações interativas de algoritmos, estruturas de dados e padrões de sistemas distribuídos.",
+    "getStarted": "Começar",
+    "learnMore": "Saiba Mais"
+  },
+  "algorithms": {
+    "title": "Algoritmos",
+    "sorting": {
+      "title": "Algoritmos de Ordenação",
+      "description": "Visualize como diferentes algoritmos de ordenação funcionam",
+      "bubbleSort": "Bubble Sort",
+      "quickSort": "Quick Sort",
+      "mergeSort": "Merge Sort",
+      "heapSort": "Heap Sort"
+    },
+    "search": {
+      "title": "Algoritmos de Busca",
+      "description": "Explore diferentes técnicas de busca",
+      "binarySearch": "Busca Binária",
+      "linearSearch": "Busca Linear"
+    },
+    "graph": {
+      "title": "Algoritmos de Grafos",
+      "description": "Entenda travessia de grafos e busca de caminhos",
+      "bfs": "Busca em Largura",
+      "dfs": "Busca em Profundidade",
+      "dijkstra": "Algoritmo de Dijkstra"
+    }
+  },
+  "dataEngineering": {
+    "title": "Algoritmos de Engenharia de Dados",
+    "etl": {
+      "title": "ETL e Processamento",
+      "description": "Padrões e algoritmos de Extract, Transform, Load",
+      "mapReduce": "MapReduce",
+      "windowFunctions": "Funções de Janela",
+      "partitioning": "Algoritmos de Particionamento"
+    },
+    "distributed": {
+      "title": "Sistemas Distribuídos",
+      "description": "Algoritmos para processamento distribuído de dados",
+      "hashing": "Hashing Consistente",
+      "bloomFilter": "Filtro de Bloom",
+      "compression": "Algoritmos de Compressão"
+    },
+    "streaming": {
+      "title": "Processamento de Stream",
+      "description": "Algoritmos de processamento de dados em tempo real",
+      "slidingWindow": "Janela Deslizante",
+      "eventTime": "Processamento por Tempo de Evento",
+      "watermarks": "Watermarks"
+    }
+  },
+  "dataStructures": {
+    "title": "Estruturas de Dados",
+    "linear": {
+      "title": "Estruturas Lineares",
+      "array": "Array",
+      "linkedList": "Lista Ligada",
+      "stack": "Pilha",
+      "queue": "Fila"
+    },
+    "nonLinear": {
+      "title": "Estruturas Não-Lineares",
+      "tree": "Árvore Binária",
+      "heap": "Heap",
+      "graph": "Grafo",
+      "hashTable": "Tabela Hash"
+    }
+  },
+  "visualization": {
+    "play": "Executar",
+    "pause": "Pausar",
+    "reset": "Reiniciar",
+    "speed": "Velocidade",
+    "step": "Passo",
+    "input": "Dados de Entrada",
+    "generate": "Gerar Aleatório",
+    "complexity": "Complexidade de Tempo",
+    "spaceComplexity": "Complexidade de Espaço"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Ocorreu um erro",
+    "tryAgain": "Tentar Novamente",
+    "close": "Fechar"
+  }
+}
