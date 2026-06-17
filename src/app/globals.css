@@ -1,69 +1,54 @@
 @import "tailwindcss";
 
-:root {
-  --background: #0f172a;
-  --foreground: #f8fafc;
+/*
+  Tailwind v4 does NOT auto-load tailwind.config.ts.
+  Custom design tokens (primary / dark palettes, fonts, animations)
+  must be declared here via @theme so utilities like `bg-dark-900`,
+  `text-primary-400`, `from-primary-500` actually generate CSS.
+*/
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  /* Brand / accent palette */
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-200: #bae6fd;
+  --color-primary-300: #7dd3fc;
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c4a6e;
+  --color-primary-950: #082f49;
+
+  /* Neutral "dark" surface palette */
+  --color-dark-50: #f8fafc;
+  --color-dark-100: #f1f5f9;
+  --color-dark-200: #e2e8f0;
+  --color-dark-300: #cbd5e1;
+  --color-dark-400: #94a3b8;
+  --color-dark-500: #64748b;
+  --color-dark-600: #475569;
+  --color-dark-700: #334155;
+  --color-dark-800: #1e293b;
+  --color-dark-900: #0f172a;
+  --color-dark-950: #020617;
+
+  /* Animations */
+  --animate-fade-in: fade-in 0.5s ease-in-out forwards;
+  --animate-slide-up: slide-up 0.4s ease-out forwards;
+  --animate-pulse-slow: pulse-slow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 8s ease-in-out infinite;
+
+  /* Extra spacing used by the hero glow */
+  --spacing-128: 32rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f8fafc;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-feature-settings: "rlig" 1, "calt" 1;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1e293b;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #475569;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
-}
-
-/* Smooth animations */
-* {
-  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
-}
-
-/* Gradient backgrounds */
-.gradient-bg {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-}
-
-.gradient-border {
-  background: linear-gradient(135deg, #0ea5e9, #3b82f6, #8b5cf6);
-  padding: 1px;
-  border-radius: 0.5rem;
-}
-
-.gradient-border > div {
-  background: #0f172a;
-  border-radius: calc(0.5rem - 1px);
-}
-
-/* Animation keyframes */
-@keyframes fadeIn {
+@keyframes fade-in {
   from {
     opacity: 0;
     transform: translateY(10px);
@@ -74,20 +59,105 @@ body {
   }
 }
 
-@keyframes pulse-slow {
-  0%, 100% {
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.55;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.2;
   }
 }
 
-/* Utility classes */
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-in-out;
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
 }
 
-.animate-pulse-slow {
-  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+:root {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 9999px;
+  border: 2px solid #0f172a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Decorative gradient border card */
+.gradient-border {
+  position: relative;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #0ea5e9, #6366f1, #a855f7);
+  padding: 1px;
+}
+.gradient-border > div {
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: calc(1rem - 1px);
+  height: 100%;
+}
+
+/* Frosted glass surface */
+.glass {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+/* Subtle grid background */
+.bg-grid {
+  background-image: linear-gradient(
+      to right,
+      rgba(148, 163, 184, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #38bdf8, #6366f1, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

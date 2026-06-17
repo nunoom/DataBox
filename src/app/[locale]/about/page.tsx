@@ -1,230 +1,121 @@
+import Link from 'next/link';
+import { Code2, Database, Cloud, Zap, Globe, GraduationCap } from 'lucide-react';
 import Navigation from '@/components/Navigation';
-import { Code, Database, Users, Zap, Globe, Heart } from 'lucide-react';
-import { type Locale } from '@/lib/i18n';
+import Footer from '@/components/Footer';
+import { tr, type Locale } from '@/lib/i18n';
 
-interface AboutPageProps {
-  params: Promise<{
-    locale: string;
-  }>;
-}
-
-export default async function AboutPage({ params }: AboutPageProps) {
-  const { locale } = await params;
-  const isPortuguese = locale === 'pt';
+export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  const locale = raw as Locale;
 
   const features = [
     {
-      icon: Code,
-      title: isPortuguese ? 'Visualizações Interativas' : 'Interactive Visualizations',
-      description: isPortuguese 
-        ? 'Veja algoritmos em ação com animações em tempo real e controles interativos.'
-        : 'See algorithms in action with real-time animations and interactive controls.',
+      icon: Code2,
+      title: tr(locale, 'Step-by-step playback', 'Reprodução passo a passo'),
+      desc: tr(locale, 'Play, pause, step and scrub through every algorithm with adjustable speed.', 'Reproduz, pausa, avança e percorre cada algoritmo com velocidade ajustável.'),
     },
     {
       icon: Database,
-      title: isPortuguese ? 'Estruturas de Dados' : 'Data Structures',
-      description: isPortuguese
-        ? 'Explore estruturas fundamentais com exemplos práticos e análise de complexidade.'
-        : 'Explore fundamental structures with practical examples and complexity analysis.',
+      title: tr(locale, 'Hands-on structures', 'Estruturas práticas'),
+      desc: tr(locale, 'Insert, delete and search directly in arrays, lists, trees and hash tables.', 'Insere, remove e procura diretamente em arrays, listas, árvores e tabelas hash.'),
     },
     {
-      icon: Users,
-      title: isPortuguese ? 'Para Estudantes e Profissionais' : 'For Students & Professionals',
-      description: isPortuguese
-        ? 'Conteúdo adequado tanto para iniciantes quanto para profissionais experientes.'
-        : 'Content suitable for both beginners and experienced professionals.',
+      icon: Cloud,
+      title: tr(locale, 'Real data-engineering', 'Engenharia de dados real'),
+      desc: tr(locale, 'MapReduce, Bloom filters, consistent hashing, partitioning and streaming.', 'MapReduce, Bloom filters, consistent hashing, particionamento e streaming.'),
     },
     {
       icon: Zap,
-      title: isPortuguese ? 'Performance em Tempo Real' : 'Real-time Performance',
-      description: isPortuguese
-        ? 'Analise a performance dos algoritmos com métricas de tempo e espaço.'
-        : 'Analyze algorithm performance with time and space complexity metrics.',
+      title: tr(locale, 'Complexity at a glance', 'Complexidade num relance'),
+      desc: tr(locale, 'Time and space complexity, properties and trade-offs on every page.', 'Complexidade de tempo e espaço, características e trade-offs em cada página.'),
     },
     {
       icon: Globe,
-      title: isPortuguese ? 'Multilíngue' : 'Multilingual',
-      description: isPortuguese
-        ? 'Disponível em português e inglês para alcançar mais estudantes.'
-        : 'Available in Portuguese and English to reach more students.',
+      title: tr(locale, 'Bilingual', 'Bilingue'),
+      desc: tr(locale, 'Full Portuguese and English, switchable with one click.', 'Português e inglês completos, alternáveis com um clique.'),
     },
     {
-      icon: Heart,
-      title: isPortuguese ? 'Código Aberto' : 'Open Source',
-      description: isPortuguese
-        ? 'Projeto de código aberto construído com tecnologias modernas.'
-        : 'Open source project built with modern technologies.',
+      icon: GraduationCap,
+      title: tr(locale, 'For learners & pros', 'Para alunos e profissionais'),
+      desc: tr(locale, 'From first steps to interview prep and system-design review.', 'Dos primeiros passos à preparação de entrevistas e revisão de system design.'),
     },
   ];
 
-  const technologies = [
-    { name: 'Next.js', description: isPortuguese ? 'Framework React para produção' : 'React framework for production' },
-    { name: 'TypeScript', description: isPortuguese ? 'JavaScript tipado para maior segurança' : 'Typed JavaScript for better safety' },
-    { name: 'Tailwind CSS', description: isPortuguese ? 'Framework CSS utilitário' : 'Utility-first CSS framework' },
-    { name: 'Framer Motion', description: isPortuguese ? 'Biblioteca de animações' : 'Animation library' },
-    { name: 'Lucide React', description: isPortuguese ? 'Ícones modernos' : 'Modern icons' },
-    { name: 'next-intl', description: isPortuguese ? 'Internacionalização' : 'Internationalization' },
-  ];
+  const tech = ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS v4', 'Framer Motion', 'Lucide Icons'];
 
   return (
     <div className="min-h-screen bg-dark-900">
-      <Navigation locale={locale as Locale} />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            {isPortuguese ? 'Sobre o DataAlgo' : 'About DataAlgo'}
+      <Navigation locale={locale} />
+
+      <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-white md:text-5xl">
+            {tr(locale, 'About ', 'Sobre o ')}
+            Data<span className="text-gradient">Box</span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
-            {isPortuguese
-              ? 'Uma plataforma educacional moderna e interativa para aprender algoritmos e estruturas de dados essenciais para engenharia de dados. Criada para estudantes e profissionais que desejam visualizar e compreender conceitos fundamentais da ciência da computação.'
-              : 'A modern and interactive educational platform for learning algorithms and data structures essential for data engineering. Created for students and professionals who want to visualize and understand fundamental computer science concepts.'
-            }
+          <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-dark-300">
+            {tr(
+              locale,
+              'DataBox is an interactive platform for learning the algorithms, data structures and distributed-systems patterns that power modern data engineering — by seeing them run, not just reading about them.',
+              'O DataBox é uma plataforma interativa para aprender os algoritmos, estruturas de dados e padrões de sistemas distribuídos que sustentam a engenharia de dados moderna — vendo-os a correr, não apenas lendo sobre eles.'
+            )}
           </p>
         </div>
 
-        {/* Mission Section */}
-        <div className="bg-gradient-to-r from-primary-900/20 to-blue-900/20 rounded-xl p-8 mb-16 border border-primary-800/30">
-          <h2 className="text-3xl font-bold text-white mb-6 text-center">
-            {isPortuguese ? 'Nossa Missão' : 'Our Mission'}
-          </h2>
-          <p className="text-lg text-gray-300 text-center max-w-4xl mx-auto leading-relaxed">
-            {isPortuguese
-              ? 'Democratizar o acesso ao conhecimento de algoritmos e estruturas de dados através de visualizações interativas e explicações claras. Acreditamos que a aprendizagem visual e prática é fundamental para compreender conceitos complexos da ciência da computação.'
-              : 'Democratize access to algorithms and data structures knowledge through interactive visualizations and clear explanations. We believe that visual and practical learning is fundamental to understanding complex computer science concepts.'
-            }
+        <div className="mt-12 rounded-3xl border border-primary-800/30 bg-linear-to-r from-primary-900/20 to-purple-900/20 p-8 text-center">
+          <h2 className="text-2xl font-bold text-white">{tr(locale, 'Our Mission', 'A Nossa Missão')}</h2>
+          <p className="mx-auto mt-4 max-w-3xl text-dark-300">
+            {tr(
+              locale,
+              'Make abstract computer-science concepts tangible. Visual, interactive learning turns "I memorised it" into "I understand it".',
+              'Tornar tangíveis os conceitos abstratos da ciência da computação. A aprendizagem visual e interativa transforma "decorei" em "percebi".'
+            )}
           </p>
         </div>
 
-        {/* Features Grid */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
-            {isPortuguese ? 'Características' : 'Features'}
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <div key={index} className="bg-dark-800 rounded-lg p-6 border border-dark-700 hover:border-dark-600 transition-colors">
-                  <div className="w-12 h-12 bg-gradient-to-r from-primary-500 to-blue-500 rounded-lg flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-400">
-                    {feature.description}
-                  </p>
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {features.map((f) => {
+            const Icon = f.icon;
+            return (
+              <div key={f.title} className="glass rounded-2xl p-6">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-linear-to-br from-primary-500 to-blue-500">
+                  <Icon className="h-5 w-5 text-white" />
                 </div>
-              );
-            })}
+                <h3 className="text-lg font-semibold text-white">{f.title}</h3>
+                <p className="mt-2 text-sm text-dark-400">{f.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-14 text-center">
+          <h2 className="mb-6 text-2xl font-bold text-white">{tr(locale, 'Built with', 'Construído com')}</h2>
+          <div className="flex flex-wrap justify-center gap-2">
+            {tech.map((t) => (
+              <span key={t} className="rounded-full border border-dark-700 bg-dark-800 px-4 py-1.5 text-sm text-dark-200">
+                {t}
+              </span>
+            ))}
           </div>
         </div>
 
-        {/* Technologies Section */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
-            {isPortuguese ? 'Tecnologias Utilizadas' : 'Technologies Used'}
-          </h2>
-          <div className="bg-dark-800 rounded-lg p-8 border border-dark-700">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {technologies.map((tech, index) => (
-                <div key={index} className="flex items-center space-x-3 p-4 bg-dark-700 rounded-lg">
-                  <div className="w-3 h-3 bg-primary-500 rounded-full"></div>
-                  <div>
-                    <h4 className="text-white font-semibold">{tech.name}</h4>
-                    <p className="text-sm text-gray-400">{tech.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Target Audience */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
-            {isPortuguese ? 'Para Quem é Esta Plataforma' : 'Who This Platform Is For'}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-dark-800 rounded-lg p-6 border border-dark-700">
-              <h3 className="text-xl font-semibold text-white mb-4">
-                {isPortuguese ? 'Estudantes' : 'Students'}
-              </h3>
-              <ul className="space-y-2 text-gray-300">
-                <li className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span>{isPortuguese ? 'Estudantes de Ciência da Computação' : 'Computer Science students'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span>{isPortuguese ? 'Estudantes de Engenharia de Dados' : 'Data Engineering students'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span>{isPortuguese ? 'Autodidatas em programação' : 'Self-taught programmers'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span>{isPortuguese ? 'Preparação para entrevistas técnicas' : 'Technical interview preparation'}</span>
-                </li>
-              </ul>
-            </div>
-            
-            <div className="bg-dark-800 rounded-lg p-6 border border-dark-700">
-              <h3 className="text-xl font-semibold text-white mb-4">
-                {isPortuguese ? 'Profissionais' : 'Professionals'}
-              </h3>
-              <ul className="space-y-2 text-gray-300">
-                <li className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span>{isPortuguese ? 'Engenheiros de Dados' : 'Data Engineers'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span>{isPortuguese ? 'Desenvolvedores de Software' : 'Software Developers'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span>{isPortuguese ? 'Arquitetos de Sistemas' : 'System Architects'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span>{isPortuguese ? 'Professores e Educadores' : 'Teachers and Educators'}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-xl p-8 border border-purple-800/30">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            {isPortuguese ? 'Comece Sua Jornada de Aprendizado' : 'Start Your Learning Journey'}
-          </h2>
-          <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
-            {isPortuguese
-              ? 'Explore algoritmos e estruturas de dados de forma interativa e visual. Comece com conceitos básicos e avance para tópicos mais complexos.'
-              : 'Explore algorithms and data structures in an interactive and visual way. Start with basic concepts and advance to more complex topics.'
-            }
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={`/${locale}/algorithms`}
-              className="bg-gradient-to-r from-primary-600 to-blue-600 hover:from-primary-700 hover:to-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
-            >
-              {isPortuguese ? 'Explorar Algoritmos' : 'Explore Algorithms'}
-            </a>
-            <a
-              href={`/${locale}/data-structures`}
-              className="border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300"
-            >
-              {isPortuguese ? 'Ver Estruturas de Dados' : 'View Data Structures'}
-            </a>
-          </div>
+        <div className="mt-14 flex flex-col justify-center gap-3 sm:flex-row">
+          <Link
+            href={`/${locale}/algorithms`}
+            className="rounded-xl bg-linear-to-r from-primary-600 to-blue-600 px-7 py-3 text-center font-semibold text-white transition-all hover:scale-[1.02]"
+          >
+            {tr(locale, 'Explore Algorithms', 'Explorar Algoritmos')}
+          </Link>
+          <Link
+            href={`/${locale}/data-structures`}
+            className="rounded-xl border border-dark-600 px-7 py-3 text-center font-semibold text-dark-200 transition-colors hover:border-primary-500 hover:text-white"
+          >
+            {tr(locale, 'View Data Structures', 'Ver Estruturas de Dados')}
+          </Link>
         </div>
       </div>
+
+      <Footer locale={locale} />
     </div>
   );
 }

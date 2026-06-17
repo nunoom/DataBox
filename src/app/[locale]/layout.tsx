@@ -1,19 +1,22 @@
-import { Inter } from 'next/font/google';
+import { notFound } from 'next/navigation';
+import { locales, type Locale } from '@/lib/i18n';
 
-const inter = Inter({ subsets: ['latin'] });
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export default async function LocaleLayout({
   children,
-  params
+  params,
 }: {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
 
-  return (
-    <div className={inter.className}>
-      {children}
-    </div>
-  );
+  if (!locales.includes(locale as Locale)) {
+    notFound();
+  }
+
+  return <>{children}</>;
 }

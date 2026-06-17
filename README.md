@@ -1,181 +1,96 @@
-# DataBox - Plataforma Interativa para Engenharia de Dados
+# DataBox — Algoritmos & Engenharia de Dados, visualizados
 
-Uma plataforma educacional moderna e interativa para aprender algoritmos e estruturas de dados essenciais para engenharia de dados. Criada para estudantes e profissionais que desejam visualizar e compreender conceitos fundamentais da ciência da computação e engenharia de dados.
+Plataforma educacional **interativa** para aprender algoritmos, estruturas de dados e os
+padrões de sistemas distribuídos que sustentam a engenharia de dados moderna — vendo-os a
+correr passo a passo, não apenas lendo sobre eles.
 
-## 🚀 Características
+Bilingue (🇵🇹 Português / 🇬🇧 English), tema escuro moderno e totalmente responsivo.
 
-- **Visualizações Interativas**: Veja algoritmos em ação com animações em tempo real
-- **Algoritmos de Data Engineering**: MapReduce, Hashing Consistente, Bloom Filters e mais
-- **Controles Personalizáveis**: Ajuste velocidade, tamanho do array e entrada de dados
-- **Análise de Complexidade**: Visualize complexidade de tempo e espaço
-- **Interface Moderna**: Design escuro e profissional com Tailwind CSS
-- **Multilíngue**: Suporte completo para Português e Inglês
-- **Responsivo**: Funciona perfeitamente em desktop e mobile
+## ✨ O que inclui
 
-## 🛠️ Tecnologias
+**28 tópicos**, cada um com página própria, complexidade, características, código de
+exemplo e — em **17** deles — uma **visualização interativa** com controlos de
+reprodução (play / pausa / passo-a-passo / velocidade).
 
-- **Next.js 16** - Framework React para produção
-- **TypeScript** - JavaScript tipado para maior segurança
-- **Tailwind CSS** - Framework CSS utilitário
-- **Framer Motion** - Biblioteca de animações
-- **Lucide React** - Ícones modernos
+### Algoritmos
 
-## 📚 Conteúdo Implementado
-
-### Algoritmos Clássicos
-- **Bubble Sort** - Algoritmo simples para aprendizado
-- **Quick Sort** - Algoritmo eficiente dividir e conquistar
-
-### Algoritmos de Data Engineering ⭐
-- **MapReduce** - Paradigma de processamento distribuído com visualização completa
-- **Consistent Hashing** *(em desenvolvimento)*
-- **Bloom Filter** *(em desenvolvimento)*
-- **Window Functions** *(em desenvolvimento)*
-- **Partitioning Algorithms** *(em desenvolvimento)*
+- **Ordenação** — Bubble, Selection, Insertion, Merge, Quick e Heap Sort
+  (animação passo a passo com comparações, trocas e pivô).
+- **Busca** — Linear e Binária.
+- **Grafos** — BFS, DFS e Dijkstra (traversal animado sobre um grafo).
 
 ### Estruturas de Dados
-- **Array** - Estrutura fundamental com exemplos práticos
-- **Outras estruturas** *(em desenvolvimento)*
 
-## 🎯 Algoritmos de Data Engineering Planejados
+- **Lineares** — Array, Lista Ligada, Pilha, Fila (inserir/remover/procurar ao vivo).
+- **Não-lineares** — Árvore Binária de Busca, Heap (vista em árvore), Grafo, Tabela Hash
+  (com encadeamento de colisões).
 
-### ETL & Processamento
-- **MapReduce** ✅ - Implementado com visualização interativa
-- **Window Functions** - Funções analíticas SQL
-- **Partitioning Algorithms** - Range, Hash, Round-robin
+### Engenharia de Dados
 
-### Sistemas Distribuídos
-- **Consistent Hashing** - Distribuição de dados com mínima reorganização
-- **Bloom Filter** - Estrutura probabilística para teste de pertencimento
-- **Compression Algorithms** - Snappy, Gzip, Parquet encoding
+- **ETL** — MapReduce (Split→Map→Shuffle→Reduce), Window Functions (SQL), Particionamento
+  (range / hash / round-robin com indicador de skew).
+- **Distribuídos** — Consistent Hashing (anel), Bloom Filter (bits + falsos positivos),
+  Compressão (RLE).
+- **Streaming** — Janela Deslizante, Event-Time e Watermarks (timeline com eventos fora
+  de ordem).
 
-### Stream Processing
-- **Sliding Window** - Processamento de janelas deslizantes
-- **Event Time Processing** - Tratamento de eventos fora de ordem
-- **Watermarks** - Controle de progresso em tempo de evento
+📖 Explicação detalhada de **todos** os algoritmos: [`DOCUMENTACAO.md`](./DOCUMENTACAO.md).
 
-## 🏗️ Conceitos Fundamentais Cobertos
+## 🛠️ Stack
 
-- **ETL Pipelines** - Padrões Extract, Transform, Load
-- **Distributed Processing** - Processamento paralelo e tolerância a falhas
-- **Data Partitioning** - Estratégias de divisão de dados
-- **Stream Processing** - Processamento em tempo real
-- **SQL Optimization** - Otimização de queries e índices
-- **Fault Tolerance** - Tolerância a falhas em sistemas distribuídos
+- **Next.js 16** (App Router, Turbopack) · **React 19** · **TypeScript**
+- **Tailwind CSS v4** (tokens de tema em CSS via `@theme`)
+- **Framer Motion** (animações) · **Lucide** (ícones)
 
-## 🚀 Como Executar
+Sem dependências de rede em build (fontes do sistema), totalmente pré-renderizável.
 
-### Pré-requisitos
-- Node.js 18+ 
-- npm ou yarn
+## 🚀 Como executar
 
-### Instalação
-
-1. Clone o repositório:
-```bash
-git clone <repository-url>
-cd data-structures-algorithms
-```
-
-2. Instale as dependências:
 ```bash
 npm install
+npm run dev      # http://localhost:3000  → redireciona para /en
 ```
 
-3. Execute o servidor de desenvolvimento:
+Outros comandos:
+
 ```bash
-npm run dev
+npm run build    # build de produção (gera 70 páginas estáticas)
+npm run start    # servir o build
+npm run lint     # ESLint
 ```
 
-4. Abra [http://localhost:3000](http://localhost:3000) no seu navegador
-
-## 🌐 Estrutura do Projeto
+## 🗂️ Estrutura
 
 ```
 src/
-├── app/                    # App Router do Next.js
-│   ├── [locale]/          # Rotas internacionalizadas
-│   │   ├── algorithms/    # Algoritmos clássicos
-│   │   ├── data-engineering/ # Algoritmos de Data Engineering ⭐
-│   │   ├── data-structures/ # Estruturas de dados
-│   │   └── about/         # Página sobre
-├── components/            # Componentes React
-│   ├── Navigation.tsx     # Barra de navegação
-│   ├── SortingVisualizer.tsx # Visualizador de ordenação
-│   └── MapReduceVisualizer.tsx # Visualizador MapReduce ⭐
-├── lib/                   # Utilitários
-│   └── i18n.ts           # Sistema de internacionalização
-└── messages/             # Arquivos de tradução
-    ├── en.json           # Traduções em inglês
-    └── pt.json           # Traduções em português
+├── app/
+│   ├── layout.tsx                  # <html>/<body>, metadata, fontes do sistema
+│   ├── page.tsx                    # redirect → /en
+│   └── [locale]/                   # rotas internacionalizadas (en | pt)
+│       ├── layout.tsx              # valida o locale, generateStaticParams
+│       ├── page.tsx                # home (hero + secções)
+│       ├── about/
+│       ├── algorithms/             # listagem + [slug] dinâmico
+│       ├── data-structures/        # listagem + [slug] dinâmico
+│       └── data-engineering/       # listagem + [slug] dinâmico
+├── components/
+│   ├── Navigation, Hero, Footer, Icon, CodeBlock
+│   ├── SectionListing.tsx          # listagem por secção (data-driven)
+│   ├── TopicPage.tsx               # template de cada tópico (data-driven)
+│   └── visualizers/                # 17 visualizadores + dispatcher + UI partilhada
+└── lib/
+    ├── content.ts                  # registo bilingue de TODOS os tópicos
+    └── i18n.ts                     # helpers de tradução
+messages/ en.json · pt.json         # textos da navegação/UI
 ```
 
-## 💡 Sugestões de Nomes Alternativos
-
-Se "DataBox" não for ideal, aqui estão outras opções:
-
-### Nomes Técnicos
-- **DataFlow Academy**
-- **BigData Visualizer**
-- **DataPipe Learning**
-- **StreamLab**
-- **DataEngine Studio**
-
-### Nomes Modernos
-- **DataViz Pro**
-- **AlgoStream**
-- **DataCraft**
-- **PipelineHub**
-- **DataForge**
-
-### Nomes Educacionais
-- **DataEng Academy**
-- **LearnDataOps**
-- **DataSkills Lab**
-- **BigData Bootcamp**
-- **DataMaster Platform**
-
-## 🎨 Funcionalidades Destacadas
-
-### MapReduce Visualizer ⭐
-- Visualização completa do paradigma MapReduce
-- Exemplo prático de contagem de palavras
-- Fases claramente separadas (Map, Shuffle, Reduce)
-- Controles interativos de velocidade
-- Explicações detalhadas em PT/EN
-
-### Interface Moderna
-- Design dark theme profissional
-- Animações suaves com Framer Motion
-- Gradientes e efeitos visuais
-- Totalmente responsivo
-
-### Sistema Educacional
-- Explicações detalhadas de cada algoritmo
-- Análise de complexidade
-- Casos de uso reais em Data Engineering
-- Exemplos de código práticos
-
-## 🎯 Roadmap
-
-### Próximas Implementações
-- [ ] Consistent Hashing com visualização de nós
-- [ ] Bloom Filter com demonstração de falsos positivos
-- [ ] Window Functions SQL com exemplos práticos
-- [ ] Algoritmos de compressão
-- [ ] Stream processing com Kafka simulation
-
-### Melhorias Planejadas
-- [ ] Modo de comparação de algoritmos
-- [ ] Playground de código interativo
-- [ ] Exportação de visualizações
-- [ ] Testes automatizados
-- [ ] PWA support
-
-## 📞 Contato
-
-Para dúvidas, sugestões ou contribuições, entre em contato através das issues do GitHub.
+### Como tudo é gerado
+Toda a navegação e todas as páginas de detalhe são geradas a partir de
+[`src/lib/content.ts`](./src/lib/content.ts). Adicionar um tópico = adicionar uma entrada
+nesse ficheiro (e, se tiver visualização, mapear o `visualizer` em
+[`src/components/visualizers/Visualizer.tsx`](./src/components/visualizers/Visualizer.tsx)).
+Não há páginas "em desenvolvimento" nem links partidos.
 
 ---
 
-Desenvolvido com ❤️ para a comunidade de engenharia de dados e ciência da computação.
+Feito para quem aprende engenharia de dados e ciência da computação. ❤️

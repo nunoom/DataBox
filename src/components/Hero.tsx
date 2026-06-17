@@ -1,119 +1,97 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Play, Code2, Database } from 'lucide-react';
+import { ArrowRight, Play, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { t, type Locale } from '@/lib/i18n';
+import { tr, type Locale } from '@/lib/i18n';
 
-interface HeroProps {
-  locale: Locale;
-}
+export default function Hero({ locale }: { locale: Locale }) {
+  const stats = [
+    { value: '28', label: tr(locale, 'Topics', 'Tópicos') },
+    { value: '17', label: tr(locale, 'Live visualizers', 'Visualizadores') },
+    { value: '2', label: tr(locale, 'Languages', 'Idiomas') },
+  ];
 
-export default function Hero({ locale }: HeroProps) {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900" />
-      
-      {/* Animated background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-128 h-128 bg-purple-500/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
+    <section className="relative overflow-hidden bg-grid">
+      {/* glow blobs */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/4 top-10 h-72 w-72 -translate-x-1/2 rounded-full bg-primary-500/15 blur-3xl animate-pulse-slow" />
+        <div className="absolute right-1/4 top-32 h-96 w-96 translate-x-1/2 rounded-full bg-purple-500/15 blur-3xl animate-pulse-slow" style={{ animationDelay: '1.5s' }} />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative mx-auto max-w-5xl px-4 py-24 text-center sm:px-6 lg:px-8 lg:py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary-700/50 bg-primary-900/20 px-4 py-1.5 text-sm text-primary-200"
+        >
+          <Sparkles className="h-3.5 w-3.5" />
+          {tr(locale, 'Interactive learning platform', 'Plataforma de aprendizagem interativa')}
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.05 }}
+          className="text-4xl font-extrabold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
+        >
+          {tr(locale, 'Algorithms &', 'Algoritmos &')}{' '}
+          <span className="text-gradient">{tr(locale, 'Data Engineering', 'Engenharia de Dados')}</span>
+          <br />
+          {tr(locale, 'made visual.', 'à vista.')}
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="mx-auto mt-6 max-w-2xl text-lg text-dark-300 md:text-xl"
+        >
+          {tr(
+            locale,
+            'Watch sorting, graphs, hashing, MapReduce and streaming run step by step — with controls, code and complexity for every concept.',
+            'Vê ordenação, grafos, hashing, MapReduce e streaming a correr passo a passo — com controlos, código e complexidade para cada conceito.'
+          )}
+        </motion.p>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7, delay: 0.25 }}
+          className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-            <span className="bg-gradient-to-r from-primary-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-              {t(locale, 'home.title')}
-            </span>
-          </h1>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto"
+          <Link
+            href={`/${locale}/algorithms`}
+            className="group inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-primary-600 to-blue-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-900/40 transition-all hover:scale-[1.03] hover:from-primary-500 hover:to-blue-500"
           >
-            {t(locale, 'home.subtitle')}
-          </motion.p>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg text-gray-400 mb-12 max-w-3xl mx-auto"
+            <Play className="h-5 w-5" />
+            {tr(locale, 'Explore Algorithms', 'Explorar Algoritmos')}
+            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+          </Link>
+          <Link
+            href={`/${locale}/data-engineering`}
+            className="inline-flex items-center gap-2 rounded-xl border border-dark-600 px-7 py-3.5 text-base font-semibold text-dark-200 transition-colors hover:border-primary-500 hover:text-white"
           >
-            {t(locale, 'home.description')}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          >
-            <Link
-              href={`/${locale}/algorithms`}
-              className="group bg-gradient-to-r from-primary-600 to-blue-600 hover:from-primary-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105"
-            >
-              <Play className="w-5 h-5" />
-              <span>{t(locale, 'home.getStarted')}</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            
-            <Link
-              href={`/${locale}/about`}
-              className="group border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center space-x-2"
-            >
-              <span>{t(locale, 'home.learnMore')}</span>
-            </Link>
-          </motion.div>
+            {tr(locale, 'Data Engineering', 'Engenharia de Dados')}
+          </Link>
         </motion.div>
 
-        {/* Feature cards */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="grid md:grid-cols-2 gap-8 mt-20 max-w-4xl mx-auto"
+          transition={{ duration: 0.7, delay: 0.35 }}
+          className="mx-auto mt-14 flex max-w-md justify-center gap-10"
         >
-          <div className="gradient-border">
-            <div className="p-6 h-full">
-              <Code2 className="w-12 h-12 text-primary-400 mb-4" />
-              <h3 className="text-xl font-semibold text-white mb-2">
-                {locale === 'en' ? 'Interactive Algorithms' : 'Algoritmos Interativos'}
-              </h3>
-              <p className="text-gray-400">
-                {locale === 'en' 
-                  ? 'Visualize sorting, searching, and graph algorithms with real-time animations and step-by-step execution.'
-                  : 'Visualize algoritmos de ordenação, busca e grafos com animações em tempo real e execução passo a passo.'
-                }
-              </p>
+          {stats.map((s) => (
+            <div key={s.label} className="text-center">
+              <div className="text-3xl font-bold text-white">{s.value}</div>
+              <div className="text-sm text-dark-400">{s.label}</div>
             </div>
-          </div>
-          
-          <div className="gradient-border">
-            <div className="p-6 h-full">
-              <Database className="w-12 h-12 text-blue-400 mb-4" />
-              <h3 className="text-xl font-semibold text-white mb-2">
-                {locale === 'en' ? 'Data Structures' : 'Estruturas de Dados'}
-              </h3>
-              <p className="text-gray-400">
-                {locale === 'en'
-                  ? 'Explore arrays, trees, graphs, and hash tables with interactive visualizations and complexity analysis.'
-                  : 'Explore arrays, árvores, grafos e tabelas hash com visualizações interativas e análise de complexidade.'
-                }
-              </p>
-            </div>
-          </div>
+          ))}
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

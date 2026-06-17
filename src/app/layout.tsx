@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
-  title: "DataBox - Data Engineering Algorithms & Structures",
-  description: "Interactive visualization platform for data engineering algorithms and data structures",
+  title: {
+    default: "DataBox — Data Engineering Algorithms & Structures",
+    template: "%s · DataBox",
+  },
+  description:
+    "Interactive visualization platform for data engineering algorithms and data structures. Sorting, searching, graphs, hashing, MapReduce, Bloom filters and more.",
+  keywords: [
+    "algorithms",
+    "data structures",
+    "data engineering",
+    "visualization",
+    "sorting",
+    "mapreduce",
+  ],
 };
 
 export default function RootLayout({
@@ -16,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} min-h-screen bg-dark-900 text-white antialiased`}>
+      <body className="font-sans min-h-screen bg-dark-900 text-white antialiased">
         {children}
       </body>
     </html>
